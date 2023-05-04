@@ -10,7 +10,8 @@
     <h2>User登録</h2>
     <form method="post" th:action="@{/user/register}" th:object="${user}">
         <label for="name">名前</label>
-        <input type="text" th:field="*{name}">
+        <input type="text" th:field="*{name}" th:errorclass="err">
+        <span th:errors="*{name}" class="err"></span>
         <br>
         <label for="gender">性別</label>
         <select th:field="*{gender}">
