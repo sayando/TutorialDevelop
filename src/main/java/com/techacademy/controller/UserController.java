@@ -17,6 +17,7 @@ import com.techacademy.entity.User;
 import com.techacademy.service.UserService;
 
 @Controller
+//ここでuserを指定しておけば下記Mappingでuser/listを/listへ省略可。userは箱の名前
 @RequestMapping("user")
 public class UserController {
     private final UserService service;
@@ -41,7 +42,6 @@ public class UserController {
     }
 
     /** User登録処理 */
-    /** User登録処理 */
     @PostMapping("/register")
     public String postRegister(@Validated User user, BindingResult res, Model model) {
         if(res.hasErrors()) {
@@ -61,11 +61,15 @@ public class UserController {
         // User更新画面に遷移
         return "user/update";
     }
-
     /** User更新処理 */
     @PostMapping("/update/{id}/")
-    public String postUser(User user) {
-        // User登録
+    public String postUser(@Validated User user, BindingResult res, @PathVariable("id") Integer id, Model model) {
+        if (res.hasErrors()) {
+            // エラーあり
+            model.addAttribute("user", user);
+            return "user/update";
+        }
+        // User更新
         service.saveUser(user);
         // 一覧画面にリダイレクト
         return "redirect:/user/list";

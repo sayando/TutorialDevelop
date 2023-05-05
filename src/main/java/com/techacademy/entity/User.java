@@ -52,6 +52,7 @@ public class User {
     @Min(0)
     @Max(120)
     private Integer age;
+    
     /** メールアドレス。50桁。null許可 */
     @Column(length = 50)
     @Email
