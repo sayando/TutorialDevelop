@@ -1,3 +1,4 @@
+<!-- 基本的にgetは全てのHTMLに適応する。例外としてpostに適応させたい時にメソッドを使用する -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -9,11 +10,15 @@
     <h1>User情報管理システム</h1>
     <h2>User更新</h2>
     <form method="post" th:action="@{/user/update/{id}/(id=${user.id})}" th:object="${user}">
+        <!-- ラベルの名前をIDとせよ -->
         <label for="id">ID</label>
+        <!-- formの中身。thはタイムリーフ（拡張機能） -->
         <input type="hidden" id="id" name="id" th:value="*{id}" th:text="*{id}">
         <br>
         <label for="name">名前</label>
+        <!-- formの中身。th:errorclass="err"はerrが見えた時、errの処理してね。errが見えてない時は type="text"してね-->
         <input type="text" th:field="*{name}" th:errorclass="err">
+        <!-- "err"はerrが見えた時、errの処理してね。errが見えてない時は以下１行はなかったことになる。先頭のthにて後半のclass="err"にも適応している-->
         <span th:errors="*{name}" class="err"></span>
         <br>
         <label for="gender">性別</label>

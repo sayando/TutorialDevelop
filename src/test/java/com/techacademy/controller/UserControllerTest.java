@@ -28,6 +28,7 @@ import com.techacademy.entity.User;
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 class UserControllerTest {
+    //MockMvc:機能やクラスを擬似的に再現したもの
     private MockMvc mockMvc;
 
     private final WebApplicationContext webApplicationContext;

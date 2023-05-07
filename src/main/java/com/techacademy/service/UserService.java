@@ -12,12 +12,12 @@ import com.techacademy.repository.UserRepository;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
     public UserService(UserRepository repository) {
         this.userRepository = repository;
     }
 
     /** 全件を検索して返す */
+    //List<User>：複数の箱を総称した名前。getUserList()：’UserList’という箱をget(みに)行ってね
     public List<User> getUserList() {
         // リポジトリのfindAllメソッドを呼び出す
         return userRepository.findAll();
